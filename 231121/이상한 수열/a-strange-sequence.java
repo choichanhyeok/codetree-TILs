@@ -20,6 +20,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
-        recursiveWTF(n);
+        bw.write(String.valueOf(recursiveWTF(n)));
+        bw.flush();
     }
 }
