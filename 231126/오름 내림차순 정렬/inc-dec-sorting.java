@@ -7,7 +7,8 @@ import java.util.StringTokenizer;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException{
@@ -17,20 +18,23 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
         br.close();
-        List<Integer> numbers = new ArrayList<Integer>();
 
+        int[] numbers = new int[n];
         for (int i = 0; i < n; i ++){
-            numbers.add(Integer.parseInt(st.nextToken()));    
+            numbers[i] = Integer.parseInt(st.nextToken()); 
         }
 
-        Collections.sort(numbers);
-        for (Integer number: numbers){
+        Arrays.sort(numbers);
+        for (int number: numbers){
             bw.write(number + " ");
         }
         bw.write("\n");
 
-        Collections.sort(numbers, Collections.reverseOrder());
-        for (Integer number: numbers){
+
+        List<Integer> numbersInteger = Arrays.stream(numbers).boxed().collect(Collectors.toList());
+
+        Collections.sort(numbersInteger, Collections.reverseOrder());
+        for (Integer number: numbersInteger){
             bw.write(number + " ");
         }
         bw.write("\n");
