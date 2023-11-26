@@ -4,7 +4,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
-import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Main {
@@ -17,12 +19,12 @@ public class Main {
         br.close();
 
         // TODO 1. 홀수번째 입력에서 정렬후 [현재 idx / 2 + 1] 위치의 값 write
-        int[] numbers = new int[n];
+        List<Integer> numbers = new ArrayList<Integer>();
         for (int i = 1; i <= n; i ++){
-            numbers[i-1] = Integer.parseInt(st.nextToken());
+            numbers.add(Integer.parseInt(st.nextToken()));
             if (i % 2 != 0){
-                Arrays.sort(numbers, 0, i);
-                bw.write(numbers[(i/2)] + " ");
+                Collections.sort(numbers);
+                bw.write(numbers.get((i/2)) + " ");
             }
         }
         bw.flush();
