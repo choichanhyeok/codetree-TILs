@@ -14,7 +14,6 @@ public class Main {
 
         String newId = st.nextToken();
         int newLevel = Integer.parseInt(st.nextToken());
-        br.close();
 
         User userA = new User("codetree", 10);
         User userNew = new User(newId, newLevel);
@@ -23,7 +22,6 @@ public class Main {
         bw.write(userNew.getAbout());
 
         bw.flush();
-        bw.close();
     }
 }
 
