@@ -3,7 +3,9 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Main {
@@ -12,14 +14,13 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
-        String[] values = new String[n];
+        List<String> values = new ArrayList<String>();
 
         for (int i = 0; i < n; i ++){
-            values[i] = br.readLine();
+            values.add(br.readLine());
         }
-        br.close();
-
-        Arrays.sort(values);
+        
+        Collections.sort(values);
 
         for (String value: values){
             bw.write(value + "\n");
