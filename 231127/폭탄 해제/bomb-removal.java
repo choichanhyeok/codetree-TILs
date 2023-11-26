@@ -11,6 +11,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
+        br.close();
         String code = st.nextToken();
         String targetLineColor = st.nextToken();
         int targetSecond = Integer.parseInt(st.nextToken());
@@ -19,6 +20,7 @@ public class Main {
         bw.write(bomb.about());
 
         bw.flush();
+        bw.close();
     }
 }
 
