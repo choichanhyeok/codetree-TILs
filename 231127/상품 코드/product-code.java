@@ -16,7 +16,7 @@ public class Main {
         String productName = st.nextToken();
         int productCode = Integer.parseInt(st.nextToken());
 
-        Product productA = new Product("leebros", 88);
+        Product productA = new Product("codetree", 50);
         Product productNew = new Product(productName, productCode);
 
         bw.write(productA.about() + "\n");
