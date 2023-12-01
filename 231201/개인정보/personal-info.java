@@ -26,7 +26,13 @@ public class Main {
 
 
         // TODO 1. 이름 순으로 정렬
-        Arrays.sort(persons, (Person p, Person other) -> p.name.compareTo(other.name));
+        Arrays.sort(persons, new Comparator<Person>(){
+            @Override
+            public int compare(Person p, Person other){
+                return p.name.compareTo(other.name);
+            }
+        });
+
 
         bw.write("name\n");
         for (Person p: persons){
@@ -35,7 +41,13 @@ public class Main {
 
 
         // TODO 2. 키 순으로 정렬
-        Arrays.sort(persons, (Person p, Person other) -> other.height - p.height);
+
+        Arrays.sort(persons, new Comparator<Person>(){
+            @Override
+            public int compare(Person p, Person other){
+                return other.height - p.height;
+            }
+        });
 
         bw.write("\nheight\n");
         for (Person p: persons){
