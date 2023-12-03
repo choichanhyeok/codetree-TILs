@@ -16,7 +16,14 @@ public class Main {
         Date startDate = new Date(11, 11, 11);
         Date endDate = new Date(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 
-        bw.write(String.valueOf(endDate.getDaysSinceNewYear() - startDate.getDaysSinceNewYear()));
+        int totalStartDate = startDate.getDaysSinceNewYear();
+        int totalEndDate = endDate.getDaysSinceNewYear();
+
+        if(Date.isComparable(totalStartDate, totalEndDate)) 
+            bw.write(String.valueOf(totalEndDate - totalStartDate));
+        else
+            bw.write("-1");
+        
         bw.flush();
         bw.close();
     }
@@ -38,5 +45,9 @@ class Date{
         int totalMinute = (day * 24 * 60) + (hour * 60) + minute;
 
         return totalMinute;
+    }
+
+    public static boolean isComparable(int startDate, int endDate){
+        return (startDate <= endDate);
     }
 }
