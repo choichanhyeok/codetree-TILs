@@ -28,7 +28,7 @@ public class Main {
         int digitSize = 0;
 
         while(true){
-            if (decimal == 1){
+            if (decimal < 2){
                 digit[digitSize] = 1;
                 break;
             }
