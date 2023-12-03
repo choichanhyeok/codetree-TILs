@@ -1,25 +1,45 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int[] answer = new int[20];
-        int cnt = 0;
+    public static void main(String[] args) throws IOException{
+        // TODO 1. 십진수 n 입력
+        int decimal = Integer.parseInt(br.readLine());
+        br.close();
+
+        // TODO 2. 2진수로 변환
+        convertDecimalToBinary(decimal);
+
+        // TODO 3. flush
+        bw.flush();
+        bw.close();
+
+    }
+
+    private static void convertDecimalToBinary(int decimal) throws IOException{
+        int[] digit = new int[20];
+        int digitSize = 0;
+
         while(true){
-            // TODO 1. 만약 나눈 결과가 1이 되면 현재 n 값 그대로를 넣고 반복문 종료
-            if (n < 2){
-                answer[cnt++] = n;
+            if (decimal == 1){
+                digit[digitSize] = 1;
                 break;
             }
-            // TODO 2. 나눈 결과가 1이 아니라면 n을 2로 나눈 나머지를 digits에 추가하고 n은 2로 나누어줌
-            answer[cnt ++] = n%2;
-            n /= 2;
+
+            digit[digitSize] = decimal % 2;
+            digitSize ++;
+            decimal /= 2;
         }
 
-        for (int i = cnt-1; i >= 0; i --){
-            System.out.print(answer[i]);
+        for (int i = digitSize; i >= 0; i --){
+            bw.write(String.valueOf(digit[i]));
         }
     }
 }
