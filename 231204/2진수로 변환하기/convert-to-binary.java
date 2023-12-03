@@ -24,7 +24,7 @@ public class Main {
     }
 
     private static void convertDecimalToBinary(int decimal) throws IOException{
-        int[] digit = new int[30];
+        int[] digit = new int[100];
         int digitSize = 0;
 
         while(true){
