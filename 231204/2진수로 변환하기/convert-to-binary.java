@@ -27,14 +27,10 @@ public class Main {
         int[] digit = new int[100];
         int digitSize = 0;
 
-        if (decimal == 0){
-            bw.write("0");
-            return;
-        } else if (decimal == 1){
-            bw.write("1");
+        if (decimal < 2){
+            bw.write(String.valueOf(decimal));
             return;
         }
-
 
         while(true){
             if (decimal == 1){
