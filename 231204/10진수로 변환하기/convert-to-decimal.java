@@ -8,5 +8,7 @@ public class Main {
         for (int i = 0; i < 5; i ++){
             num = num * 2 + binary[i]; // 걍 공식임
         }
+        
+        System.out.print(num);
     }
 }
