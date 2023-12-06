@@ -1,69 +1,53 @@
-import java.util.Scanner;
-
-// 문제 분석
-// 1. 0에서 시작해서 n번의 명령에 걸쳐 움직인다.
-// 2. 2번 이상 지나간 영역의 크기를 출력하는 프로그램을 작성하라
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Main {
-    // 필요 변수
     private static final int OFFSET = 100;
-    private static final int MAX_R = OFFSET * 2 + 1;
-    private static final int commandLimit = 100;
-    private static final int[] checked = new int[MAX_R];
-    private static final int[] x1 = new int[commandLimit];
-    private static final int[] x2 = new int[commandLimit];
-    private static int curIdx = OFFSET;
+    private static final int MAX_N = OFFSET * 2 + 1;
+    private static final int[] line = new int[MAX_N];
 
-    private static void loggingSegment(int distance, char direction, int logIdx){
-        
-        if (direction == 'R'){
-            x1[logIdx] = curIdx;
-            x2[logIdx] = curIdx + distance;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-            curIdx = x2[logIdx];
+        int n = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < n; i ++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int distance = Integer.parseInt(st.nextToken());
+            char direction = st.nextToken().charAt(0);
+            move(distance, direction);
         }
-        else {
-            x1[logIdx] = curIdx - distance;
-            x2[logIdx] = curIdx;
 
-            curIdx = x1[logIdx];
-        }
+        br.close();
+        bw.write(String.valueOf(getBetterThanTwoCount()));
+        bw.flush();
+        bw.close();
     }
 
-    private static void drawAtChecked(int x1, int x2){
-        for (int i = x1; i < x2; i ++){
-            checked[i] += 1;
-        }
-    }
+    private static int getBetterThanTwoCount(){
+        int count = 0;
 
-    private static int betterThanMore2(){
-        int answer = 0;
-        for (int i = 0; i < MAX_R; i ++){
-            if(checked[i] >= 2){
-                answer ++;
+        for (int i = 0; i < MAX_N; i ++){
+            if (line[i] > 1){
+                count ++;
             }
         }
-        return answer;
+        return count;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // TODO 1. 명령의 개수 n을 입력
-        int n = sc.nextInt();
-        checked[0] = 1;
-
-        // TODO 2. n번 반복하며 명령을 받고 해당 명령의 세그먼트를 기록해준다
-        for (int i = 0; i < n; i ++){
-            loggingSegment(sc.nextInt(), sc.next().charAt(0), i);
+    private static void move(int distance, char direction){
+        if (direction == 'R'){
+            while (distance-- != 1)
+                line[OFFSET+distance] ++;
+            
+        } else{
+            while (distance-- != 1)
+                line[OFFSET-distance] ++;
         }
-
-        // TODO 3. 각각의 세그먼트들을 순회하며 drawing
-        for (int i = 0; i < n; i ++){
-            drawAtChecked(x1[i], x2[i]);
-        }
-
-        // TODO 4. checked[]를 순회하며 2이상인 개수를 찾아 추출
-        System.out.println(betterThanMore2());
     }
 }
