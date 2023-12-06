@@ -1,49 +1,44 @@
-import java.util.Scanner;
-
-// 문제 분석
-// 1차원 직선상에 선분이 놓여있음 (직선은 음수 포함) -> OFFSET 필요
-// 선분을 입력받아 (구간) 몇개의 선분이 겹치는지를 구하는 프로그램 작성하라.
-// 단, 끝점에서 닿는 경우는 겹치는 것으로 생각 안함
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Main {
-    // 필요 전역 변수
     private static final int OFFSET = 100;
-    private static final int MAX_R = OFFSET * 2 + 1;
-    private static final int[] checked = new int[MAX_R];
-    private static int n;
+    private static final int MAX_N = OFFSET * 2 + 1;
+    private static final int[] line = new int[MAX_N];
 
-    private static void drawToCheckedArray(int start, int end){
-        for (int i = start; i < end; i ++){
-            checked[i] += 1;
-        }
-    }
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    private static int getMaxValue(){
-        int maxValue = 0;
+        int n = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < MAX_R; i ++){
-            maxValue = Math.max(maxValue, checked[i]);
-        }
-
-        return maxValue;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // TODO 1. 선분의 개수 n 입력
-        n = sc.nextInt();
-
-        // TODO 2. n개의 선분 입력
         for (int i = 0; i < n; i ++){
-            int startPoint = sc.nextInt() + OFFSET;
-            int endPoint = sc.nextInt() + OFFSET;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
 
-            // TODO 3. n개의 선분을 checked[]에 기록 (단, 끝점에서 닿는건 기록치 않음)
-            drawToCheckedArray(startPoint, endPoint);
+            for (int j = start; j < end; j ++){
+                line[j + OFFSET] ++;
+            }
         }
 
-        // TODO 4. 최대로 겹치는 구간의 선분 개수 (그냥 겹치는 최대값 도출)
-        System.out.println(getMaxValue());
+        br.close();
+
+        bw.write(String.valueOf(getMaxOverlapping()));
+        bw.flush();
+        bw.close();
+    }
+
+    public static int getMaxOverlapping(){
+        int maxValue = Integer.MIN_VALUE;
+
+        for (int i = 0; i < MAX_N; i ++){
+            maxValue = Math.max(maxValue, line[i]);
+        }
+        return maxValue;
     }
 }
