@@ -19,8 +19,8 @@ public class Main {
         for (int i = 0; i < n; i ++){
             StringTokenizer st = new StringTokenizer(br.readLine());
 
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
+            int x = Integer.parseInt(st.nextToken()) + OFFSET;
+            int y = Integer.parseInt(st.nextToken()) + OFFSET;
 
             // TODO 1. x, y 로부터 거리가 8인 사각형 그리기
             drawSquare(x, y);
