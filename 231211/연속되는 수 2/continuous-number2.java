@@ -15,14 +15,16 @@ public class Main {
         int n  = Integer.parseInt(br.readLine());
         int seq = 0;
         for (int i = 0; i < n; i ++){
-            seq ++;
             numbers[i] = Integer.parseInt(br.readLine());
 
             if (i == 0 || numbers[i-1] != numbers[i]){
                 MAX_VALUE = (MAX_VALUE < seq)? seq: MAX_VALUE;
                 seq = 0;
             }
+            seq ++;
         }
+        MAX_VALUE = (MAX_VALUE < seq)? seq: MAX_VALUE;
+
         br.close();
         bw.write(String.valueOf(MAX_VALUE));
         bw.flush();
