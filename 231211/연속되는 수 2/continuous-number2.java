@@ -1,40 +1,32 @@
-import java.util.Scanner;
-
-// 문제 분석
-// 1. n개의 숫자를 입력받고 
-// 2. 연속해서 동일한 숫자가 나오는 횟수를 구하라
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class Main {
-    // 필요 변수
-    private static final int MAX_R = 1000 + 1;
-    private static final int[] numbArray = new int[MAX_R];
-    
-    private static int getMaxSequenceSize(int n){
-        int seqCnt = 0;
-        int maxSize = 0;
+    private static final int MAX_N = 1000;
+    private static final int[] numbers = new int[MAX_N];
+    private static int MAX_VALUE = Integer.MIN_VALUE;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int n  = Integer.parseInt(br.readLine());
+        int seq = 0;
         for (int i = 0; i < n; i ++){
-            seqCnt += 1;
-            if(i == 0|| numbArray[i] != numbArray[i-1]){
-                maxSize = Math.max(maxSize, seqCnt);
-                seqCnt = (i == 0)? 1: 0;
+            numbers[i] = Integer.parseInt(br.readLine());
+
+            if (i == 0 || numbers[i-1] != numbers[i]){
+                MAX_VALUE = (MAX_VALUE < seq)? seq: MAX_VALUE;
+                seq = 0;
             }
+
+            seq ++;
         }
-        maxSize = Math.max(maxSize, seqCnt);
-        return maxSize;
-    }
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // TODO 1. 숫자의 개수 n을 입력
-        int n = sc.nextInt();
-
-        // TODO 2. 연속해서 동일한 숫자가 나오는 횟수 구하기
-        for (int i = 0; i < n; i ++){
-            numbArray[i] = sc.nextInt();
-        }
-
-        // TODO 3. 연속해서 동일한 숫자중 크기가 가장 큰 최대값 구하기)
-        System.out.println(getMaxSequenceSize(n));
+        br.close();
+        bw.write(String.valueOf(MAX_VALUE));
+        bw.flush();
+        bw.close();
     }
 }
