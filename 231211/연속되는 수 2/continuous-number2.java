@@ -13,7 +13,7 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n  = Integer.parseInt(br.readLine());
-        int seq = 0;
+        int seq = 1;
         for (int i = 0; i < n; i ++){
             numbers[i] = Integer.parseInt(br.readLine());
 
