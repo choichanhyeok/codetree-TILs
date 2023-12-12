@@ -22,7 +22,7 @@ public class Main {
             count ++;
         }
 
-        br.close()
+        br.close();
         maxCount = Math.max(maxCount, count);
 
         bw.write(String.valueOf(maxCount));
