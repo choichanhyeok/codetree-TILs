@@ -27,8 +27,6 @@ public class Main {
             }
         }
 
-        MAX_COUNT = Math.max(MAX_COUNT, count);
-
         br.close();
 
         bw.write(String.valueOf(count));
