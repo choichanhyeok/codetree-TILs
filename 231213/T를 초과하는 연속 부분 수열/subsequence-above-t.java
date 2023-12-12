@@ -27,7 +27,7 @@ public class Main {
             count ++;
         }
 
-        MAX_COUNT = Math.max(MAX_COUNT, nowNumb);
+        MAX_COUNT = Math.max(MAX_COUNT, count);
 
         br.close();
 
