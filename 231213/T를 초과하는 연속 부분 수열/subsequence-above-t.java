@@ -14,17 +14,17 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int t = Integer.parseInt(st.nextToken());
 
-        int count = 0;
+        int count = 1;
         int MAX_COUNT = Integer.MIN_VALUE;
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++){
             int nowNumb = Integer.parseInt(st.nextToken());
+            count ++;
             if (i == 0 || nowNumb <= t){
                 MAX_COUNT = Math.max(MAX_COUNT, nowNumb);
-                count = 0;
+                count = 1;
             }
-            count ++;
         }
 
         MAX_COUNT = Math.max(MAX_COUNT, count);
