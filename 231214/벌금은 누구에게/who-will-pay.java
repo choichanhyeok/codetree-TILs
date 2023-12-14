@@ -15,19 +15,19 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
 
-        int[] students = new int[n];
+        int[] students = new int[n+1];
         int answer = -1;
         for (int i = 0; i < m; i ++){
-            int currentIdx = Integer.parseInt(br.readLine())-1;
+            int currentIdx = Integer.parseInt(br.readLine());
             students[currentIdx] ++;
 
             if (students[currentIdx] >= k){
-                answer = students[currentIdx];
+                answer = currentIdx;
                 break;
             }
         }
         br.close();
-        bw.write(String.valueOf(answer-1));
+        bw.write(String.valueOf(answer));
         bw.flush();
         bw.close();
     }
