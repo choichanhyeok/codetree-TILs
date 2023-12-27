@@ -1,30 +1,45 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        int K = sc.nextInt(); // K 입력 받음
-        int N = sc.nextInt(); // N 입력 받음
-
-        int[] combo = new int[N];
-        generateCombinations(1, K, N, combo, 0);
-
-        sc.close(); // 스캐너 사용 종료
+    private static final ArrayList<Integer> numbList = new ArrayList<>();
+    private static int k, n; 
+    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    
+    private static void printBox() throws IOException{
+        for (Integer numb: numbList){
+            bw.write(String.valueOf(numb) + " ");
+        }
+        bw.write("\n");
     }
 
-    public static void generateCombinations(int start, int K, int N, int[] combo, int depth) {
-        if (depth == N) {
-            for (int i = 0; i < N; i++) { // 모든 조합의 요소를 출력
-                System.out.print(combo[i] + " ");
-            }
-            System.out.println(); // 한 조합이 끝날 때마다 줄바꿈
+    private static void findPermutate(int cnt) throws IOException{
+        if (cnt == n){
+            printBox();
             return;
         }
 
-        for (int i = 1; i <= K; i++) { // i는 항상 1부터 시작해야 모든 숫자 조합을 만들 수 있음
-            combo[depth] = i;
-            generateCombinations(start, K, N, combo, depth + 1); // 다음 요소를 결정하기 위해 재귀 호출
+        for (int i = 1; i <= k; i ++){
+            numbList.add(i);
+            findPermutate(cnt + 1);
+            numbList.remove(numbList.size()-1);
         }
+    }
+
+    public static void main(String[] args) throws IOException{
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        k = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        br.close();
+
+        findPermutate(0);
+        bw.flush();
+        bw.close();
     }
 }
